@@ -1,7 +1,7 @@
 // Up cria tabela no banco de dados
 exports.up = function(knex) {
     knex.schema.createTable('ongs', function(table) {
-        table.string('id').primary();
+        table.string('id').primary();   // Id como string pois será gerado pela própria aplicação
         table.string('email').notNullable();
         table.string('whatsapp').notNullable();
         table.string('city').notNullable();
