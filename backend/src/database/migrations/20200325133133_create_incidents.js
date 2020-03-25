@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    knex.schema.createTable('incidents', function(table) {
+    return knex.schema.createTable('incidents', function(table) {
         table.increments();    // Id incremental
         table.string('title').notNullable();
         table.string('description').notNullable();
@@ -11,5 +11,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    knex.schema.dropTable('incidents');
+    return knex.schema.dropTable('incidents');
 };
