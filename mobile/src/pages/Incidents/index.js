@@ -24,8 +24,8 @@ export default function Incidents() {
         loadIncidents();
     }, []);
 
-    function navigateToDetails() {
-        navigation.navigate('Details');
+    function navigateToDetails(incident) {
+        navigation.navigate('Details', { incident });
     }
 
     return(
@@ -58,7 +58,7 @@ export default function Incidents() {
 
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={navigateToDetails}
+                            onPress={() => { navigateToDetails(item) }}
                         >
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
                             <Feather name='arrow-right' color='#e02041' size={16}/>
