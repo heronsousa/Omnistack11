@@ -12,7 +12,7 @@ export default function Details() {
     const route = useRoute();
 
     const incident = route.params.incident;
-    const message = "Olá UnB, estou entrando em contato pois gostaria de ajudar no caso 'Cadelinha amora' com o valor de R$ 120,00."
+    const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso '${incident.title}' com o valor de ${Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}.`;
 
     function navigateBack() {
         navigation.goBack();
@@ -20,14 +20,14 @@ export default function Details() {
 
     function sendMail() {
         MailComposer.composeAsync({
-            subject: 'Herói do caso: Cadelinha amora',
-            recipients: ['heronrs1@gmail.com'],
+            subject: `Herói do caso: ${incident.title}`,
+            recipients: [incident.email],
             body: message
         });
     }
 
     function sendWhatsApp() {
-        Linking.openURL(`whatsapp://send?phone=5561985677992&text=${message}`);
+        Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
     }
 
     return(
